@@ -33,6 +33,7 @@ dependencies {
     implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0'
     /*view依赖注入*/
     implementation 'com.jakewharton:butterknife:8.8.0'
+    implementation 'com.android.support:support-v4:27.0.2'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.0'
     /*网络请求框架*/
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
@@ -63,7 +64,5 @@ dependencies {
     implementation "com.android.support:design:27.0.2"
     /*各种工具类 */
     implementation 'com.github.vondear:RxTools:v1.7.6.2'
-
-
 
 }
