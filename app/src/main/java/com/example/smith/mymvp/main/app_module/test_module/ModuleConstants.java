@@ -6,6 +6,8 @@ package com.example.smith.mymvp.main.app_module.test_module;
 
 public class ModuleConstants {
 
+    public static final String NetAndLogTest= "网络和Log";
+    public static final String EventBus= "EventBus的使用";
 
 
 }

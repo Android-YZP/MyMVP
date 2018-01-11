@@ -5,4 +5,6 @@ package com.example.smith.mymvp.main.app_module;
  */
 
 public class GlobalConstants {
+
+
 }

@@ -6,6 +6,9 @@ import android.os.Bundle;
 import com.example.smith.mymvp.main.listener.LifeCycleListener;
 import com.example.smith.mymvp.main.manager.ActivityStackManager;
 import com.trello.rxlifecycle2.components.RxActivity;
+import com.vondear.rxtools.RxTool;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -30,17 +33,24 @@ public abstract class BaseActivity extends RxActivity implements EasyPermissions
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (mListener != null) {
             mListener.onCreate(savedInstanceState);
         }
+
         //手动对activity栈的管理
         ActivityStackManager.getManager().push(this);
         setContentView(getContentViewId());
         mContext = this;
         unBinder = ButterKnife.bind(this);//初始化ButterKnife
         initBundleData();
-        init();
+        initView();
+        initData();
+        setListener();
     }
+
+
+
 
     @Override
     protected void onStart() {
@@ -64,6 +74,11 @@ public abstract class BaseActivity extends RxActivity implements EasyPermissions
         if (mListener != null) {
             mListener.onResume();
         }
+
+        //注册EventBus
+        if (isEventBus()){
+            EventBus.getDefault().register(this);
+        }
     }
 
     @Override
@@ -71,6 +86,11 @@ public abstract class BaseActivity extends RxActivity implements EasyPermissions
         super.onPause();
         if (mListener != null) {
             mListener.onPause();
+        }
+
+        //注销EventBus
+        if (isEventBus()){
+            EventBus.getDefault().unregister(this);
         }
     }
 
@@ -92,7 +112,9 @@ public abstract class BaseActivity extends RxActivity implements EasyPermissions
         if (unBinder != null) {
             unBinder.unbind();
         }
+
         ActivityStackManager.getManager().remove(this);
+
     }
 
 
@@ -102,16 +124,28 @@ public abstract class BaseActivity extends RxActivity implements EasyPermissions
     protected abstract int getContentViewId();
 
     /**
-     * 初始化应用程序，设置一些初始化数据,获取数据等操作
-     */
-    protected abstract void init();
-
-    /**
      * 获取上一个界面传送过来的数据
      */
     protected abstract void initBundleData();
 
+    /**
+     * 初始化应用程序，设置一些界面控件的初始化
+     */
+    protected abstract void initView();
 
+    /**
+     * 初始化应用程序，设置一些初始化数据,获取数据等操作
+     */
+    protected abstract void initData();
+
+    /**
+     * 设置一些控件的各种监听
+     */
+    protected abstract void setListener();
+    /**
+     * 是否成为EventBus消息的接收者
+     */
+    protected abstract boolean isEventBus();
 
     /*************************************权限的处理*************************************************************/
 
@@ -127,7 +161,6 @@ public abstract class BaseActivity extends RxActivity implements EasyPermissions
     @Override
     public void onPermissionsDenied(int requestCode, List<String> list) {
     }
-
 
 
     /**

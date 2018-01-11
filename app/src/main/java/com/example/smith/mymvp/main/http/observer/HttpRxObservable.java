@@ -33,7 +33,7 @@ public class HttpRxObservable {
     public static Observable getObservable(Observable<HttpResponse> apiObservable) {
         // showLog(request);
         Observable observable = apiObservable
-                .map(new ServerResultFunction())
+                .map(new ServerResultFunction())//处理服务器返回的结果
                 .onErrorResumeNext(new HttpResultFunction<>())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());

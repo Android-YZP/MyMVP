@@ -55,17 +55,6 @@ public class RetrofitUtils {
             }
         });
         logging.setLevel(HttpLoggingInterceptor.Level.BASIC);
-        //添加头
-        Interceptor headInterceptor = new Interceptor() {
-            @Override
-            public okhttp3.Response intercept(Chain chain) throws IOException {
-                Request request = chain.request()
-                        .newBuilder()
-                        .addHeader("token", "C47B1071")
-                        .build();
-                return chain.proceed(request);
-            }
-        };
 
         OkHttpClient client = new OkHttpClient.Builder()
                 //TIME_OUT
@@ -75,7 +64,6 @@ public class RetrofitUtils {
                 //设置缓存
 //                .addInterceptor(cacheInterceptor)
 //                .addNetworkInterceptor(cacheInterceptor)
-                .addInterceptor(headInterceptor)
                 .addInterceptor(logging) //打印日志
                 .build();
         return client;
