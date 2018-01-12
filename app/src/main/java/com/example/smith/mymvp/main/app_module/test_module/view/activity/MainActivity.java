@@ -132,8 +132,8 @@ public class MainActivity extends BaseActivity implements ITestContract {
         mTestBeanList.add(testBean1);
 
         TestBean testBean2 = new TestBean();
-        testBean2.name = ModuleConstants.EventBus;
-        testBean2.view = EventBusActivity.class;
+        testBean2.name = ModuleConstants.TabLayout;
+        testBean2.view = Main2Activity.class;
         mTestBeanList.add(testBean2);
 
         mTestAdapter.setDataList(mTestBeanList);

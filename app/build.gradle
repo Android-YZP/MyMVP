@@ -43,7 +43,6 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
     /*动态权限*/
     implementation 'pub.devrel:easypermissions:0.4.2'
-
     /*列表框架*/
     implementation 'com.github.jdsjlzx:LRecyclerView:1.4.3'
     /*下载框架*/

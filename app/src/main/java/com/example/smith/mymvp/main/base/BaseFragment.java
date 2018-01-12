@@ -2,17 +2,14 @@ package com.example.smith.mymvp.main.base;
 
 import android.content.Context;
 import android.os.Bundle;
-
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import com.example.smith.mymvp.main.listener.LifeCycleListener;
-import com.example.smith.mymvp.main.manager.ActivityStackManager;
-import com.trello.rxlifecycle2.components.RxActivity;
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
-import com.vondear.rxtools.RxTool;
-
+import com.trello.rxlifecycle2.components.support.RxFragment;
 import org.greenrobot.eventbus.EventBus;
-
 import java.util.List;
-
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import pub.devrel.easypermissions.EasyPermissions;
@@ -26,76 +23,70 @@ import pub.devrel.easypermissions.EasyPermissions;
  *
  * @author 姚中平
  */
-public abstract class BaseActivity extends RxAppCompatActivity implements EasyPermissions.PermissionCallbacks {
+public abstract class BaseFragment extends RxFragment implements EasyPermissions.PermissionCallbacks {
 
     protected Context mContext;
     protected Unbinder unBinder;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        if (mListener != null) {
-            mListener.onCreate(savedInstanceState);
-        }
-
-        //注册EventBus
-        if (isEventBus()){
-            EventBus.getDefault().register(this);
-        }
-
-        //手动对activity栈的管理
-        ActivityStackManager.getManager().push(this);
-        setContentView(getContentViewId());
-        mContext = this;
-        unBinder = ButterKnife.bind(this);//初始化ButterKnife
-        initBundleData();
-        initView();
-        initData();
-        setListener();
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(getContentViewId(), container, false);
+//        if (mListener != null) {
+//            mListener.onCreate(savedInstanceState);
+//        }
+//
+//        //注册EventBus
+//        if (isEventBus()){
+//            EventBus.getDefault().register(this);
+//        }
+//
+//        mContext = getActivity();
+//        unBinder = ButterKnife.bind(this, view);//初始化ButterKnife
+//        initBundleData();
+//        initView();
+//        initData();
+//        setListener();
+        return view;
     }
 
-
-
-
     @Override
-    protected void onStart() {
+    public void onStart() {
         super.onStart();
         if (mListener != null) {
             mListener.onStart();
         }
     }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        if (mListener != null) {
-            mListener.onRestart();
-        }
-    }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         if (mListener != null) {
             mListener.onResume();
         }
 
-
+        //注册EventBus
+        if (isEventBus()) {
+            EventBus.getDefault().register(this);
+        }
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
         if (mListener != null) {
             mListener.onPause();
         }
 
-
+        //注销EventBus
+        if (isEventBus()) {
+            EventBus.getDefault().unregister(this);
+        }
     }
 
     @Override
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
         if (mListener != null) {
             mListener.onStop();
@@ -103,7 +94,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements EasyPe
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
         if (mListener != null) {
             mListener.onDestroy();
@@ -117,9 +108,6 @@ public abstract class BaseActivity extends RxAppCompatActivity implements EasyPe
         if (isEventBus()){
             EventBus.getDefault().unregister(this);
         }
-
-        ActivityStackManager.getManager().remove(this);
-
     }
 
 
@@ -147,6 +135,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements EasyPe
      * 设置一些控件的各种监听
      */
     protected abstract void setListener();
+
     /**
      * 是否成为EventBus消息的接收者
      */

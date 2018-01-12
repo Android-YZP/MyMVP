@@ -6,6 +6,7 @@ import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
+import com.squareup.leakcanary.LeakCanary;
 import com.vondear.rxtools.RxTool;
 
 /**
@@ -26,6 +27,11 @@ public class BaseApplication extends Application {
                 .tag("项目名=======》")   // 每个日志的全局标记。默认PRETTY_LOGGER
                 .build();
         Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy));
+        //LeakCanary内存泄漏的初始化
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            return;
+        }
+        LeakCanary.install(this);
 
     }
 }
