@@ -32,21 +32,21 @@ public abstract class BaseFragment extends RxFragment implements EasyPermissions
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(getContentViewId(), container, false);
-//        if (mListener != null) {
-//            mListener.onCreate(savedInstanceState);
-//        }
-//
-//        //注册EventBus
-//        if (isEventBus()){
-//            EventBus.getDefault().register(this);
-//        }
-//
-//        mContext = getActivity();
-//        unBinder = ButterKnife.bind(this, view);//初始化ButterKnife
-//        initBundleData();
-//        initView();
-//        initData();
-//        setListener();
+        if (mListener != null) {
+            mListener.onCreate(savedInstanceState);
+        }
+
+        //注册EventBus
+        if (isEventBus()){
+            EventBus.getDefault().register(this);
+        }
+
+        mContext = getActivity();
+        unBinder = ButterKnife.bind(this, view);//初始化ButterKnife
+        initBundleData();
+        initView();
+        initData();
+        setListener();
         return view;
     }
 

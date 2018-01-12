@@ -133,7 +133,7 @@ public class MainActivity extends BaseActivity implements ITestContract {
 
         TestBean testBean2 = new TestBean();
         testBean2.name = ModuleConstants.TabLayout;
-        testBean2.view = Main2Activity.class;
+        testBean2.view = TabActivity.class;
         mTestBeanList.add(testBean2);
 
         mTestAdapter.setDataList(mTestBeanList);

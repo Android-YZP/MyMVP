@@ -4,10 +4,10 @@
     android:layout_height="match_parent"
     tools:context="com.example.smith.mymvp.main.app_module.test_module.view.fragment.BlankFragment">
 
-    <TextView
+    <ImageView
         android:id="@+id/text_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:src="@mipmap/ic_launcher"/>
 
 </FrameLayout>

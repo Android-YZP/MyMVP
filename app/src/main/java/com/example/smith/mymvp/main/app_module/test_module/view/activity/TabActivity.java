@@ -1,17 +1,20 @@
 package com.example.smith.mymvp.main.app_module.test_module.view.activity;
 
+import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
+import android.view.View;
 
 import com.example.smith.mymvp.R;
 import com.example.smith.mymvp.main.app_module.test_module.adapter.TestViewpagerAdapter;
 import com.example.smith.mymvp.main.app_module.test_module.view.fragment.BlankFragment;
-import com.example.smith.mymvp.main.app_module.test_module.view.fragment.TestBlankFragment;
 import com.example.smith.mymvp.main.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
 
 import butterknife.BindView;
 public class TabActivity extends BaseActivity {
@@ -36,18 +39,14 @@ public class TabActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        tabLayout.addTab(tabLayout.newTab().setText("标签一"));
-        tabLayout.addTab(tabLayout.newTab().setText("标签一"));
-        tabLayout.addTab(tabLayout.newTab().setText("标签一"));
-        tabLayout.addTab(tabLayout.newTab().setText("标签一"));
 
-        fragmentList.add(new TestBlankFragment());
-        fragmentList.add(new TestBlankFragment());
-        fragmentList.add(new TestBlankFragment());
-        fragmentList.add(new TestBlankFragment());
-        viewpager.setAdapter(new TestViewpagerAdapter(getSupportFragmentManager(),fragmentList));
-
-//        tabLayout.setupWithViewPager(viewpager);
+        fragmentList.add(new BlankFragment());
+        fragmentList.add(new BlankFragment());
+        fragmentList.add(new BlankFragment());
+        fragmentList.add(new BlankFragment());
+        TestViewpagerAdapter adapter = new TestViewpagerAdapter(getSupportFragmentManager(), fragmentList);
+        viewpager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewpager);
 
     }
 

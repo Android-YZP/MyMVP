@@ -4,8 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.orhanobut.logger.Logger;
+import com.vondear.rxtools.RxActivityTool;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,28 +16,34 @@ import java.util.List;
 public class TestViewpagerAdapter extends FragmentPagerAdapter {
 
 
-    private List<Fragment> list;
+    private List<Fragment> mList;
+    private List<String> mListTitle = new ArrayList<>();
 
-    public TestViewpagerAdapter(FragmentManager fm) {
-        super(fm);
+    //重写这个方法，将设置每个Tab的标题
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return mListTitle.get(position);
     }
 
-    public TestViewpagerAdapter(FragmentManager fm, List<Fragment> list) {
+    public TestViewpagerAdapter(FragmentManager fm,List<Fragment> list) {
         super(fm);
-        Logger.e(list.size()+"2");
-        this.list = list;
+        this.mList = list;
+        mListTitle.add("标签一");
+        mListTitle.add("标签二");
+        mListTitle.add("标签三");
+        mListTitle.add("标签四");
+        mListTitle.add("标签五");
     }
 
     @Override
     public Fragment getItem(int position) {
-        Logger.e(list.size()+"1");
-        return list.get(position);
+
+        return mList.get(position);
     }
 
     @Override
     public int getCount() {
-        Logger.e(list.size()+"");
-        return list != null ? 0 : list.size();
+        return mList.size();
     }
 }
 

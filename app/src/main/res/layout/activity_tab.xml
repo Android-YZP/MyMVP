@@ -16,12 +16,10 @@
     <android.support.design.widget.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
-        android:visibility="gone"
         android:layout_height="wrap_content"
         android:background="@color/background_dark"
         app:tabIndicatorColor="@android:color/holo_orange_light"
         app:tabIndicatorHeight="4dp"
-        app:tabMode="scrollable"
         app:tabSelectedTextColor="@android:color/holo_orange_light"
         app:tabTextColor="@color/colorPrimary" />
 
