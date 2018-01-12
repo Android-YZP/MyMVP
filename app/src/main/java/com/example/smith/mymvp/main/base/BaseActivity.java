@@ -39,11 +39,6 @@ public abstract class BaseActivity extends RxAppCompatActivity implements EasyPe
             mListener.onCreate(savedInstanceState);
         }
 
-        //注册EventBus
-        if (isEventBus()){
-            EventBus.getDefault().register(this);
-        }
-
         //手动对activity栈的管理
         ActivityStackManager.getManager().push(this);
         setContentView(getContentViewId());
@@ -53,6 +48,12 @@ public abstract class BaseActivity extends RxAppCompatActivity implements EasyPe
         initView();
         initData();
         setListener();
+
+        //注册EventBus
+        if (isEventBus()){
+            EventBus.getDefault().register(this);
+        }
+
     }
 
 
@@ -80,8 +81,6 @@ public abstract class BaseActivity extends RxAppCompatActivity implements EasyPe
         if (mListener != null) {
             mListener.onResume();
         }
-
-
     }
 
     @Override
@@ -90,8 +89,6 @@ public abstract class BaseActivity extends RxAppCompatActivity implements EasyPe
         if (mListener != null) {
             mListener.onPause();
         }
-
-
     }
 
     @Override
@@ -119,7 +116,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements EasyPe
         }
 
         ActivityStackManager.getManager().remove(this);
-
+        mContext = null;
     }
 
 
