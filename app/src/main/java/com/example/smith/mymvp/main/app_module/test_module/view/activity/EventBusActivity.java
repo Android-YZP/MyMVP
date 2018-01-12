@@ -1,22 +1,17 @@
 package com.example.smith.mymvp.main.app_module.test_module.view.activity;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
 import com.example.smith.mymvp.R;
 import com.example.smith.mymvp.main.app_module.test_module.model.EventBean.TestMessage;
+import com.example.smith.mymvp.main.app_module.test_module.model.EventBean.TestStickyMessage;
 import com.example.smith.mymvp.main.base.BaseActivity;
-import com.trello.rxlifecycle2.components.RxActivity;
 import com.vondear.rxtools.RxActivityTool;
 import com.vondear.rxtools.view.RxToast;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class EventBusActivity extends BaseActivity {
@@ -74,10 +69,8 @@ public class EventBusActivity extends BaseActivity {
                 break;
             case R.id.button2:
                 RxActivityTool.skipActivity(mContext,EventBusSkipActivity.class);
-
-
                 // 发布Sticky事件
-                EventBus.getDefault().postSticky(new TestMessage("呵呵呵呵呵呵"));
+                EventBus.getDefault().postSticky(new TestStickyMessage("数据过来了吗？"));
                 break;
         }
     }

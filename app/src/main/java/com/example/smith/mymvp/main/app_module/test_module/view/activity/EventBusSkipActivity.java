@@ -5,6 +5,7 @@ import android.widget.Button;
 
 import com.example.smith.mymvp.R;
 import com.example.smith.mymvp.main.app_module.test_module.model.EventBean.TestMessage;
+import com.example.smith.mymvp.main.app_module.test_module.model.EventBean.TestStickyMessage;
 import com.example.smith.mymvp.main.base.BaseActivity;
 import com.vondear.rxtools.view.RxToast;
 
@@ -25,7 +26,9 @@ public class EventBusSkipActivity extends BaseActivity {
     }
 
     @Override
-    protected void initBundleData() {}
+    protected void initBundleData() {
+
+    }
 
     @Override
     protected void initView() {
@@ -48,7 +51,7 @@ public class EventBusSkipActivity extends BaseActivity {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
-    public void onDataSynEvent(TestMessage event) {
+    public void onDataSynEvent(TestStickyMessage event) {
         button3.setText(event.getMessage());
     }
 
