@@ -38,6 +38,7 @@ public class NetLogTestActivity extends BaseActivity implements ITestContract {
     protected void setListener() {
 
     }
+
     @Override
     protected boolean isEventBus() {
         return false;
@@ -62,4 +63,6 @@ public class NetLogTestActivity extends BaseActivity implements ITestContract {
     public void showToast(String result) {
         RxToast.error(result);
     }
+
+
 }

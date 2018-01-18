@@ -68,7 +68,7 @@ public class EventBusActivity extends BaseActivity {
                 EventBus.getDefault().post(new TestMessage("Hello哈哈哈"));
                 break;
             case R.id.button2:
-                RxActivityTool.skipActivity(mContext,EventBusSkipActivity.class);
+                RxActivityTool.skipActivity(EventBusActivity.this,EventBusSkipActivity.class);
                 // 发布Sticky事件
                 EventBus.getDefault().postSticky(new TestStickyMessage("数据过来了吗？"));
                 break;

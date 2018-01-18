@@ -28,7 +28,6 @@ import pub.devrel.easypermissions.EasyPermissions;
  */
 public abstract class BaseActivity extends RxAppCompatActivity implements EasyPermissions.PermissionCallbacks {
 
-    protected Context mContext;
     protected Unbinder unBinder;
 
     @Override
@@ -42,7 +41,6 @@ public abstract class BaseActivity extends RxAppCompatActivity implements EasyPe
         //手动对activity栈的管理
         ActivityStackManager.getManager().push(this);
         setContentView(getContentViewId());
-        mContext = this;
         unBinder = ButterKnife.bind(this);//初始化ButterKnife
         initBundleData();
         initView();
@@ -116,7 +114,6 @@ public abstract class BaseActivity extends RxAppCompatActivity implements EasyPe
         }
 
         ActivityStackManager.getManager().remove(this);
-        mContext = null;
     }
 
 

@@ -51,7 +51,6 @@ public class MainActivity extends BaseActivity implements ITestContract {
 
     @Override
     protected void initBundleData() {
-
     }
 
     @Override
@@ -83,6 +82,24 @@ public class MainActivity extends BaseActivity implements ITestContract {
     @Override
     protected void initData() {
         mTestPresenter.HttpLogin("");
+
+
+        TestBean testBean = new TestBean();
+        testBean.name = ModuleConstants.NetAndLogTest;
+        testBean.view = NetLogTestActivity.class;
+        mTestBeanList.add(testBean);
+
+        TestBean testBean1 = new TestBean();
+        testBean1.name = ModuleConstants.EventBus;
+        testBean1.view = EventBusActivity.class;
+        mTestBeanList.add(testBean1);
+
+        TestBean testBean2 = new TestBean();
+        testBean2.name = ModuleConstants.TabLayout;
+        testBean2.view = TabActivity.class;
+        mTestBeanList.add(testBean2);
+
+        mTestAdapter.setDataList(mTestBeanList);
     }
 
     @Override
@@ -121,22 +138,7 @@ public class MainActivity extends BaseActivity implements ITestContract {
 
     @Override
     public void LoadingDataSuccess(String result) {
-        TestBean testBean = new TestBean();
-        testBean.name = ModuleConstants.NetAndLogTest;
-        testBean.view = NetLogTestActivity.class;
-        mTestBeanList.add(testBean);
-
-        TestBean testBean1 = new TestBean();
-        testBean1.name = ModuleConstants.EventBus;
-        testBean1.view = EventBusActivity.class;
-        mTestBeanList.add(testBean1);
-
-        TestBean testBean2 = new TestBean();
-        testBean2.name = ModuleConstants.TabLayout;
-        testBean2.view = TabActivity.class;
-        mTestBeanList.add(testBean2);
-
-        mTestAdapter.setDataList(mTestBeanList);
+       showToast(result);
     }
 
     @Override

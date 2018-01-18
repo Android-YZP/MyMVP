@@ -1,30 +1,20 @@
 package com.example.smith.mymvp.main.app_module.test_module.view.activity;
 
-import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
-import android.view.View;
-
 import com.example.smith.mymvp.R;
 import com.example.smith.mymvp.main.app_module.test_module.adapter.TestViewpagerAdapter;
 import com.example.smith.mymvp.main.app_module.test_module.view.fragment.BlankFragment;
 import com.example.smith.mymvp.main.base.BaseActivity;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.Inflater;
-
 import butterknife.BindView;
 public class TabActivity extends BaseActivity {
-
-
     @BindView(R.id.tabLayout)
     TabLayout tabLayout;
     @BindView(R.id.viewpager)
     ViewPager viewpager;
-
     List<Fragment> fragmentList = new ArrayList<>();
 
     @Override
@@ -39,7 +29,6 @@ public class TabActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
         fragmentList.add(new BlankFragment());
         fragmentList.add(new BlankFragment());
         fragmentList.add(new BlankFragment());
@@ -47,7 +36,6 @@ public class TabActivity extends BaseActivity {
         TestViewpagerAdapter adapter = new TestViewpagerAdapter(getSupportFragmentManager(), fragmentList);
         viewpager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewpager);
-
     }
 
     @Override
@@ -57,7 +45,6 @@ public class TabActivity extends BaseActivity {
 
     @Override
     protected void setListener() {
-
 
     }
 
