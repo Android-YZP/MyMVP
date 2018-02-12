@@ -24,6 +24,7 @@
         <activity android:name=".main.app_module.test_module.view.activity.EventBusActivity" />
         <activity android:name=".main.app_module.test_module.view.activity.EventBusSkipActivity" />
         <activity android:name=".main.app_module.test_module.view.activity.TabActivity" />
+        <activity android:name=".main.app_module.test_module.view.activity.Web1Activity"></activity>
     </application>
 
 </manifest>

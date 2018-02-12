@@ -99,6 +99,11 @@ public class MainActivity extends BaseActivity implements ITestContract {
         testBean2.view = TabActivity.class;
         mTestBeanList.add(testBean2);
 
+        TestBean testBean3 = new TestBean();
+        testBean3.name = ModuleConstants.TabLayout;
+        testBean3.view = Web1Activity.class;
+        mTestBeanList.add(testBean3);
+
         mTestAdapter.setDataList(mTestBeanList);
     }
 

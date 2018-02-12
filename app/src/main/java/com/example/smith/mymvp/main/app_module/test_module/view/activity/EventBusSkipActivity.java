@@ -27,22 +27,18 @@ public class EventBusSkipActivity extends BaseActivity {
 
     @Override
     protected void initBundleData() {
-
     }
 
     @Override
     protected void initView() {
-
     }
 
     @Override
     protected void initData() {
-
     }
 
     @Override
     protected void setListener() {
-
     }
 
     @Override

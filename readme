@@ -1,0 +1,13 @@
+1.android studio 3.0
+
+2.app框架图看一下
+
+3.本项目例子
+
+注意：（一定要熟悉）
+APP框架结构MVP
+网络层RxJava2+Retrofit2+RxLifecycle2
+依赖注入butterknife
+LRecyclerView
+
+第三方（极光推送， 友盟统计）;
